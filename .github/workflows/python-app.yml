@@ -39,7 +39,7 @@ jobs:
         # dependency list
         deps_list: requirements.txt
         # path of git repo relative to GITHUB_WORKSPACE(no trailing slash)
-        path: /covid-numbers/covid-numbers
+        path: covid-numbers/covid-numbers
         # directory of test scripts
         test_dir: ./tests
         # pattern of the test script name
