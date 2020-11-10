@@ -1,4 +1,5 @@
-		# Adams County Covid Stats 09-11
+# Adams County Covid Stats 09-11
+
 Stat | Current Total | vs. Previous Day | vs. 14 Days Previous
 ---|---|---|---
 Positive Cases | 18690 | +796:17894 | +5346:13344
