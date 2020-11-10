@@ -58,7 +58,6 @@ blah4 = lst_now[4][att]
 county = blah.get('COUNTY')
 date = blah.get('Date')
 
-
 now_value_cases = blah.get('Value')
 now_rate_cases_100k = blah1.get('Rate')
 now_value_death = blah2.get('Value')
@@ -71,13 +70,11 @@ blah2 = lst_1[2][att]
 blah3 = lst_1[3][att]
 blah4 = lst_1[4][att]
 
-
 b1_value_cases = blah.get('Value')
 b1_rate_cases_100k = blah1.get('Rate')
 b1_value_death = blah2.get('Value')
 b1_rate_death_100k = blah3.get('Rate')
 b1_value_tests = blah4.get('Value')
-
 
 blah = lst_14[0][att]
 blah1 = lst_14[1][att]
@@ -85,12 +82,28 @@ blah2 = lst_14[2][att]
 blah3 = lst_14[3][att]
 blah4 = lst_14[4][att]
 
-
 b14_value_cases = blah.get('Value')
 b14_rate_cases_100k = blah1.get('Rate')
 b14_value_death = blah2.get('Value')
 b14_rate_death_100k = blah3.get('Rate')
 b14_value_tests = blah4.get('Value')
+
+new_case_1 = now_value_cases - b1_value_cases
+new_case_14 = now_value_cases - b14_value_cases
+
+case_100k_14 = now_rate_cases_100k - b14_rate_cases_100k
+
+new_death_1 = now_value_death - b1_value_death
+new_death_14 = now_value_death - b14_value_death
+
+death_100k_14 = now_rate_death_100k - b14_rate_death_100k
+
+new_test_1 = now_value_tests - b1_value_tests
+new_test_14 = now_value_tests - b14_value_tests
+
+test_pos = new_case_1 / new_test_1 * 100
+test_pos_14 = new_case_14 / new_test_14 * 100
+
 
 
 print('Cases for ' , date_now.strftime("%d-%m") , now_value_cases, '\n addtional from previous > Day: ', now_value_cases - b1_value_cases, ' > 14 days:',   now_value_cases - b14_value_cases)
