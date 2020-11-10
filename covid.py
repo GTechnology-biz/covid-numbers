@@ -88,27 +88,37 @@ b14_value_death = blah2.get('Value')
 b14_rate_death_100k = blah3.get('Rate')
 b14_value_tests = blah4.get('Value')
 
-new_case_1 = now_value_cases - b1_value_cases
-new_case_14 = now_value_cases - b14_value_cases
+new_case_1 = round(now_value_cases - b1_value_cases,2)
+new_case_14 = round(now_value_cases - b14_value_cases,2)
 
-case_100k_14 = now_rate_cases_100k - b14_rate_cases_100k
+case_100k_14 = round(now_rate_cases_100k - b14_rate_cases_100k,2)
 
-new_death_1 = now_value_death - b1_value_death
-new_death_14 = now_value_death - b14_value_death
+new_death_1 = round(now_value_death - b1_value_death,2)
+new_death_14 = round(now_value_death - b14_value_death,2)
 
-death_100k_14 = now_rate_death_100k - b14_rate_death_100k
+death_100k_14 = round(now_rate_death_100k - b14_rate_death_100k,2)
 
-new_test_1 = now_value_tests - b1_value_tests
-new_test_14 = now_value_tests - b14_value_tests
+new_test_1 = round(now_value_tests - b1_value_tests,2)
+new_test_14 = round(now_value_tests - b14_value_tests,2)
 
-test_pos = new_case_1 / new_test_1 * 100
-test_pos_14 = new_case_14 / new_test_14 * 100
+test_pos = round(new_case_1 / new_test_1 * 100,2)
+test_pos_14 = round(new_case_14 / new_test_14 * 100,2)
+
+sp = " "
+
+print(f"\t\t# Adams County Covid Stats {date_now.strftime('%d-%m')}")
+print(f"\tStat | Current Total | vs. Previous Day | vs. 14 Days Previous")
+print(f"\tPositive Cases | {now_value_cases} | +{new_case_1}:{b1_value_cases} | +{new_case_14}:{b14_value_cases}")
+print(f"\tTests Perfomed | {now_value_tests} | +{new_test_1}:{b1_value_tests} | +{new_test_14}:{b14_value_tests}")
+print(f"\t% Pos. vs. Tests | %{test_pos} | | %{test_pos_14}")
+print(f"\tPos. Cases per 100k | {now_rate_cases_100k} | | +{case_100k_14}:{b14_rate_cases_100k}")
+print(f"\tDeaths Among Cases | {now_value_death} | +{new_death_1}:{b1_value_death} | +{new_death_14}:{b14_value_death}")
+print(f"\tDeaths Among Cases per 100k | {now_rate_death_100k} | | +{death_100k_14}:{b14_rate_death_100k}")
 
 
-
-print('Cases for ' , date_now.strftime("%d-%m") , now_value_cases, '\n addtional from previous > Day: ', now_value_cases - b1_value_cases, ' > 14 days:',   now_value_cases - b14_value_cases)
-print("Day Before  " , date_1 , "/n " , b1_value_cases)
-print("2 weeks ago  " , date_14 , "/n "  , b14_value_cases)
+#print('Cases for ' , date_now.strftime("%d-%m") , now_value_cases, '\n addtional from previous > Day: ', now_value_cases - b1_value_cases, ' > 14 days:',   now_value_cases - b14_value_cases)
+#print("Day Before  " , date_1 , "/n " , b1_value_cases)
+#print("2 weeks ago  " , date_14 , "/n "  , b14_value_cases)
 #def get_value(lst,indx,value):
 #    blah = lst[indx][att]
 #    reslt = blah.get(value)
