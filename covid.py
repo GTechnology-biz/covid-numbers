@@ -44,8 +44,9 @@ jsn_14 = data_14.json()
 lst_14 = jsn_14[key]
 
 
-county = 
-date = 
+county = lst_now[0][att].get('COUNTY')
+date = lst_now[0][att].get('Date')
+print(County, date) 
 
 now_value_cases = 
 now_rate_cases_100k =
