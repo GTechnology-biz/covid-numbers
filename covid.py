@@ -49,7 +49,6 @@ jsn_14 = data_14.json()
 lst_14 = jsn_14[key]
 
 
-<<<<<<< HEAD
 blah = lst_now[0][att]
 blah1 = lst_now[1][att]
 blah2 = lst_now[2][att]
@@ -85,11 +84,6 @@ blah1 = lst_14[1][att]
 blah2 = lst_14[2][att]
 blah3 = lst_14[3][att]
 blah4 = lst_14[4][att]
-=======
-county = lst_now[0][att].get('COUNTY')
-date = lst_now[0][att].get('Date')
-print(County, date) 
->>>>>>> 62274410375acf5ad92a29f52216408d19fa4e54
 
 
 b14_value_cases = blah.get('Value')
