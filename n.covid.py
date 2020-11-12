@@ -6,57 +6,77 @@ import datetime
 
 date_now = datetime.datetime.now()
 date = str(date_now)
-#date_now = date - datetime.timedelta(days=0)
-date_now_day = date_now.strftime("%d")
-date_now_mth = date_now.strftime("%m")
-date_now_yer = date_now.strftime("%Y")
 date_1 = date_now - datetime.timedelta(days=1)
-#date_1 = date_now - datetime.timedelta(days=2)
-date_1_day = date_1.strftime("%d")
-date_1_mth = date_1.strftime("%m")
-date_1_yer = date_1.strftime("%Y")
 date_14 = date_now - datetime.timedelta(days=14)
-#date_14 = date_now - datetime.timedelta(days=15)
-date_14_day = date_14.strftime("%d")
-date_14_mth = date_14.strftime("%m")
-date_14_yer = date_14.strftime("%Y")
 
-src_date = date_now.strftime("'%m/%d/%Y'") 
-print(src_date)
+#src_date = date_now.strftime("%m/%d/%Y")
+#src_date_1 = (date_now - datetime.timedelta(days=1)).strftime("%m/%d/%Y")
+#src_date_14 = (date_now - datetime.timedelta(days=14)).strftime("%m/%d/%Y")
+src_date = "11/11/2020"
+src_date_1 = "11/10/2020"
+src_date_14 = "10/27/2020"
+
+
 key = "features"
 att = "attributes"
 
-county = ""
+county_A = "ADAMS"
+county ="COUNTY"
 metric = "Metric"
 value = "Value"
 rate = "Rate"
-date = "Date"
+date_k = "Date"
 desc = "Desc_"
 
-#url_now = "https://services3.arcgis.com/66aUo8zsujfVXRIT/arcgis/rest/services/colorado_covid19_county_statistics_cumulative/FeatureServer/0/query?where=COUNTY='ADAMS'%20AND%20Date='" + date_now_mth + "%2F" + date_now_day + "%2F" + date_now_yer + "'&outFields=COUNTY,Desc_,Metric,Value,Rate,Date&f=json"
-#url_1 = "https://services3.arcgis.com/66aUo8zsujfVXRIT/arcgis/rest/services/colorado_covid19_county_statistics_cumulative/FeatureServer/0/query?where=COUNTY%20%3D%20%27ADAMS%27%20AND%20Date%20%3D%20%27" + date_1_mth + "%2F" + date_1_day + "%2F" + date_1_yer + "%27&outFields=COUNTY,Desc_,Metric,Value,Rate,Date&f=json"
-#url_14 = "https://services3.arcgis.com/66aUo8zsujfVXRIT/arcgis/rest/services/colorado_covid19_county_statistics_cumulative/FeatureServer/0/query?where=COUNTY%20%3D%20%27ADAMS%27%20AND%20Date%20%3D%20%27" + date_14_mth + "%2F" + date_14_day + "%2F" + date_14_yer + "%27&outFields=COUNTY,Desc_,Metric,Value,Rate,Date&f=json"
+ca_100 = "Case Rates Per 100,000 People in Colorado by County>Rate Per 100,000"
+ca  = "Cases of COVID-19 in Colorado by County>Cases"
+de_100 = "Deaths Among COVID-19 Cases Rates Per 100,000 People in Colorado by County>Rate Per 100,000"
+de = "Deaths Among COVID-19 Cases in Colorado by County>Deaths"
+tst_100 = "Total COVID-19 Testing Rate per 100,000 People in Colorado by County>Rate Per 100,000"
+tst_pcr = "Total COVID-19 Tests Performed in Colorado by County>Percent of tests by PCR"
+tst_ser = "Total COVID-19 Tests Performed in Colorado by County>Percent of tests by Serology"
+tst = "Total COVID-19 Tests Performed in Colorado by County>Total Tests Performed"
 
-url = "https://services3.arcgis.com/66aUo8zsujfVXRIT/arcgis/rest/services/colorado_covid19_county_statistics_cumulative/FeatureServer/0/query?where=COUNTY%20%3D%20'ADAMS'%20AND%20Date%20%3D%20" + src_date + "&outFields=COUNTY,Desc_,Metric,Value,Rate,Date&f=json"
-#utl_now = url
-print(url)  
+url = "https://services3.arcgis.com/66aUo8zsujfVXRIT/arcgis/rest/services/colorado_covid19_county_statistics_cumulative/FeatureServer/0/query?where=Date%20%3D'" + src_date + "'%20OR%20Date%20%3D%20'" + src_date_1 +"'%20OR%20Date%20%3D%20'" + src_date_14 + "'&outFields=*&outSR=4326&f=json"
+
 src = requests.get(url)
 data = src.json()
-print(data)
+
 dic = dict()
+dic_1 = dict()
+dic_14 = dict()
+dicl = dict()
 
 for at in data[key]:
-    desc = at[att][desc]
-    value = at[att][value]
-    rate = at[att][rate]
-    metric = at[att][metric]
-    desc = desc + ":" + metric
-    if value == None:
-        dic[desc] = rate
-    else:
-        dic[desc] = value
+    countyl = at[att][county]
+    datel = at[att][date_k]
+
+    if countyl == 'ADAMS':
+        if datel == src_date:
+            dicl = dic
+        elif datel == src_date_1:
+            dicl = dic_1
+        elif datel == src_date_14:
+            dicl = dic_14
+
+        descl = at[att][desc]
+        valuel = at[att][value]
+        ratel = at[att][rate]
+        metricl = at[att][metric]
+        full = descl + ">" + metricl
+
+        if valuel == None:
+            dicl[full] = ratel
+        else:
+            dicl[full] = valuel
+
+print("day +0")
+print(json.dumps(dic, indent=4, sort_keys=True))
+print("day -1")
+print(json.dumps(dic_1, indent=4, sort_keys=True))
+print("day -14")
+print(json.dumps(dic_14, indent=4, sort_keys=True))
 
 
-for x in dic:
-    print(x,"::", dic[x])
+#print(dic[ca])
 

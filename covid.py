@@ -6,149 +6,77 @@ import datetime
 
 date_now = datetime.datetime.now()
 date = str(date_now)
-#date_now = date - datetime.timedelta(days=0)
-date_now_day = date_now.strftime("%d")
-date_now_mth = date_now.strftime("%m")
-date_now_yer = date_now.strftime("%Y")
 date_1 = date_now - datetime.timedelta(days=1)
-#date_1 = date_now - datetime.timedelta(days=2)
-date_1_day = date_1.strftime("%d")
-date_1_mth = date_1.strftime("%m")
-date_1_yer = date_1.strftime("%Y")
 date_14 = date_now - datetime.timedelta(days=14)
-#date_14 = date_now - datetime.timedelta(days=15)
-date_14_day = date_14.strftime("%d")
-date_14_mth = date_14.strftime("%m")
-date_14_yer = date_14.strftime("%Y")
 
-print(f"{date} bb {date_now} vv {date_1} hh {date_14}")
+#src_date = date_now.strftime("%m/%d/%Y")
+#src_date_1 = (date_now - datetime.timedelta(days=1)).strftime("%m/%d/%Y")
+#src_date_14 = (date_now - datetime.timedelta(days=14)).strftime("%m/%d/%Y")
+src_date = "11/11/2020"
+src_date_1 = "11/10/2020"
+src_date_14 = "10/27/2020"
+
 
 key = "features"
 att = "attributes"
 
-county = ""
-metric = ""
-value = ""
-rate = ""
-date = ""
+county_A = "ADAMS"
+county ="COUNTY"
+metric = "Metric"
+value = "Value"
+rate = "Rate"
+date_k = "Date"
+desc = "Desc_"
 
-url_now = "https://services3.arcgis.com/66aUo8zsujfVXRIT/arcgis/rest/services/colorado_covid19_county_statistics_cumulative/FeatureServer/0/query?where=COUNTY='ADAMS'%20AND%20Date='" + date_now_mth + "%2F" + date_now_day + "%2F" + date_now_yer + "'&outFields=COUNTY,Desc_,Metric,Value,Rate,Date&f=json"
-url_1 = "https://services3.arcgis.com/66aUo8zsujfVXRIT/arcgis/rest/services/colorado_covid19_county_statistics_cumulative/FeatureServer/0/query?where=COUNTY%20%3D%20%27ADAMS%27%20AND%20Date%20%3D%20%27" + date_1_mth + "%2F" + date_1_day + "%2F" + date_1_yer + "%27&outFields=COUNTY,Desc_,Metric,Value,Rate,Date&f=json"
-url_14 = "https://services3.arcgis.com/66aUo8zsujfVXRIT/arcgis/rest/services/colorado_covid19_county_statistics_cumulative/FeatureServer/0/query?where=COUNTY%20%3D%20%27ADAMS%27%20AND%20Date%20%3D%20%27" + date_14_mth + "%2F" + date_14_day + "%2F" + date_14_yer + "%27&outFields=COUNTY,Desc_,Metric,Value,Rate,Date&f=json"
-print(url_now)
-print(url_1)
-print(url_14)
-data_now = requests.get(url_now)
-jsn_now = data_now.json()
-lst_now = jsn_now[key]
-#print(jsn_now)
-data_1 = requests.get(url_1)
-jsn_1 = data_1.json()
-lst_1 = jsn_1[key]
+ca_100 = "Case Rates Per 100,000 People in Colorado by County>Rate Per 100,000"
+ca  = "Cases of COVID-19 in Colorado by County>Cases"
+de_100 = "Deaths Among COVID-19 Cases Rates Per 100,000 People in Colorado by County>Rate Per 100,000"
+de = "Deaths Among COVID-19 Cases in Colorado by County>Deaths"
+tst_100 = "Total COVID-19 Testing Rate per 100,000 People in Colorado by County>Rate Per 100,000"
+tst_pcr = "Total COVID-19 Tests Performed in Colorado by County>Percent of tests by PCR"
+tst_ser = "Total COVID-19 Tests Performed in Colorado by County>Percent of tests by Serology"
+tst = "Total COVID-19 Tests Performed in Colorado by County>Total Tests Performed"
 
-data_14 = requests.get(url_14)
-jsn_14 = data_14.json()
-lst_14 = jsn_14[key]
+url = "https://services3.arcgis.com/66aUo8zsujfVXRIT/arcgis/rest/services/colorado_covid19_county_statistics_cumulative/FeatureServer/0/query?where=Date%20%3D'" + src_date + "'%20OR%20Date%20%3D%20'" + src_date_1 +"'%20OR%20Date%20%3D%20'" + src_date_14 + "'&outFields=*&outSR=4326&f=json"
 
+src = requests.get(url)
+data = src.json()
 
-blah = lst_now[0][att]
-blah1 = lst_now[1][att]
-blah2 = lst_now[2][att]
-blah3 = lst_now[3][att]
-blah4 = lst_now[4][att]
+dic = dict()
+dic_1 = dict()
+dic_14 = dict()
+dicl = dict()
 
-county = blah.get('COUNTY')
-date = blah.get('Date')
+for at in data[key]:
+    countyl = at[att][county]
+    datel = at[att][date_k]
 
-now_value_cases = blah.get('Value')
-now_rate_cases_100k = blah1.get('Rate')
-now_value_death = blah2.get('Value')
-now_rate_death_100k = blah3.get('Rate')
-now_value_tests =  blah4.get('Value')
+    if countyl == 'ADAMS':
+        if datel == src_date:
+            dicl = dic
+        elif datel == src_date_1:
+            dicl = dic_1
+        elif datel == src_date_14:
+            dicl = dic_14
 
-blah = lst_1[0][att]
-blah1 = lst_1[1][att]
-blah2 = lst_1[2][att]
-blah3 = lst_1[3][att]
-blah4 = lst_1[4][att]
+        descl = at[att][desc]
+        valuel = at[att][value]
+        ratel = at[att][rate]
+        metricl = at[att][metric]
+        full = descl + ">" + metricl
 
-b1_value_cases = blah.get('Value')
-b1_rate_cases_100k = blah1.get('Rate')
-b1_value_death = blah2.get('Value')
-b1_rate_death_100k = blah3.get('Rate')
-b1_value_tests = blah4.get('Value')
+        if valuel == None:
+            dicl[full] = ratel
+        else:
+            dicl[full] = valuel
 
-blah = lst_14[0][att]
-blah1 = lst_14[1][att]
-blah2 = lst_14[2][att]
-blah3 = lst_14[3][att]
-blah4 = lst_14[4][att]
-
-b14_value_cases = blah.get('Value')
-b14_rate_cases_100k = blah1.get('Rate')
-b14_value_death = blah2.get('Value')
-b14_rate_death_100k = blah3.get('Rate')
-b14_value_tests = blah4.get('Value')
-
-new_case_1 = round(now_value_cases - b1_value_cases,2)
-new_case_14 = round(now_value_cases - b14_value_cases,2)
-
-case_100k_14 = round(now_rate_cases_100k - b14_rate_cases_100k,2)
-
-new_death_1 = round(now_value_death - b1_value_death,2)
-new_death_14 = round(now_value_death - b14_value_death,2)
-
-death_100k_14 = round(now_rate_death_100k - b14_rate_death_100k,2)
-
-new_test_1 = round(now_value_tests - b1_value_tests,2)
-new_test_14 = round(now_value_tests - b14_value_tests,2)
-
-test_pos = round(new_case_1 / new_test_1 * 100,2)
-test_pos_14 = round(new_case_14 / new_test_14 * 100,2)
-
-sp = " "
-
-print(f"\t\t# Adams County Covid Stats {date_now.strftime('%d-%m')}")
-print(f"Stat | Current Total | vs. Previous Day | vs. 14 Days Previous")
-print(f"---|---|---|---")
-print(f"Positive Cases | {now_value_cases} | +{new_case_1}:{b1_value_cases} | +{new_case_14}:{b14_value_cases}")
-print(f"Tests Perfomed | {now_value_tests} | +{new_test_1}:{b1_value_tests} | +{new_test_14}:{b14_value_tests}")
-print(f"% Pos. vs. Tests | %{test_pos} | | %{test_pos_14}")
-print(f"Pos. Cases per 100k | {now_rate_cases_100k} | | +{case_100k_14}:{b14_rate_cases_100k}")
-print(f"Deaths Among Cases | {now_value_death} | +{new_death_1}:{b1_value_death} | +{new_death_14}:{b14_value_death}")
-print(f"Deaths Among Cases per 100k | {now_rate_death_100k} | | +{death_100k_14}:{b14_rate_death_100k}")
+print("day +0")
+print(json.dumps(dic, indent=4, sort_keys=True))
+print("day -1")
+print(json.dumps(dic_1, indent=4, sort_keys=True))
+print("day -14")
+print(json.dumps(dic_14, indent=4, sort_keys=True))
 
 
-#print('Cases for ' , date_now.strftime("%d-%m") , now_value_cases, '\n addtional from previous > Day: ', now_value_cases - b1_value_cases, ' > 14 days:',   now_value_cases - b14_value_cases)
-#print("Day Before  " , date_1 , "/n " , b1_value_cases)
-#print("2 weeks ago  " , date_14 , "/n "  , b14_value_cases)
-#def get_value(lst,indx,value):
-#    blah = lst[indx][att]
-#    reslt = blah.get(value)
-    
-#if indx == 0:
-#    blah = lst[0][att]
-#    county = blah.get('COUNTY')
-#    date = blah.get('Date')
-#    now_value_cases = blah.get('Value')
-
-
-#for i in range(8):
- #   blah = lst[i][att]
-   # desc = blah.get('Desc_')
-#    print(i, desc)
-    #metric = blah.get('Metric')
-  #  print(i, metric)
-   # county = blah.get('COUNTY')
-    #print(i, county)
- #   value = blah.get('Value')
-   # print(i, value)
-  #  rate = blah.get('Rate')
-  # a print(i,  rate)
- #   date = blah.get('Date')   
-   # print(i , date)
-
-
-
-
+#print(dic[ca])
 
