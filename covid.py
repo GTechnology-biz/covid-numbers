@@ -9,12 +9,12 @@ date = str(date_now)
 date_1 = date_now - datetime.timedelta(days=1)
 date_14 = date_now - datetime.timedelta(days=14)
 
-#src_date = date_now.strftime("%m/%d/%Y")
-#src_date_1 = (date_now - datetime.timedelta(days=1)).strftime("%m/%d/%Y")
-#src_date_14 = (date_now - datetime.timedelta(days=14)).strftime("%m/%d/%Y")
-src_date = "11/11/2020"
-src_date_1 = "11/10/2020"
-src_date_14 = "10/27/2020"
+src_date = date_now.strftime("%m/%d/%Y")
+src_date_1 = (date_now - datetime.timedelta(days=1)).strftime("%m/%d/%Y")
+src_date_14 = (date_now - datetime.timedelta(days=14)).strftime("%m/%d/%Y")
+#src_date = "11/11/2020"
+#src_date_1 = "11/10/2020"
+#src_date_14 = "10/27/2020"
 
 
 key = "features"
@@ -71,11 +71,18 @@ for at in data[key]:
             dicl[full] = valuel
 
 #print("day +0")
-#print(json.dumps(dic, indent=4, sort_keys=True))
+dic = json.dumps(dic, sort_keys=True)
+dic = json.loads(dic)
 #print("day -1")
-#print(json.dumps(dic_1, indent=4, sort_keys=True))
+dic_1 =json.dumps(dic_1, sort_keys=True)
+dic_1 = json.loads(dic_1)
 #print("day -14")
-#print(json.dumps(dic_14, indent=4, sort_keys=True))
+dic_14 = json.dumps(dic_14, indent=4, sort_keys=True)
+dic_14 = json.loads(dic_14)
+
+
+
+
 
 print(f"\t# Covids stats: {src_date}")
 print(f" Stat | Value")
