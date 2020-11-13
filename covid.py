@@ -92,8 +92,8 @@ pos_14 = (new_c_14 / ntst_14) * 100
 
 print(f"Description | Stat ")
 print(f"-----|-----")
-print(f"Today Pos test percent | {round(pos)}%   ")
-print(f"14 day Pos test percent | {round(pos_14)}%   ")
+print(f"Today Pos test percent | {round(pos,2)}%   ")
+print(f"14 day Pos test percent | {round(pos_14,2)}%   ")
 print(f"--------|--------")
 print(f"New Cases Since yesterday | {new_c_1} ")
 print(f"New Cases Since 14 days ago | {new_c_14} ")

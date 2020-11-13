@@ -1,7 +1,7 @@
 Description | Stat 
 -----|-----
-Today Pos test percent | 15%   
-14 day Pos test percent | 14%   
+Today Pos test percent | 15.24%   
+14 day Pos test percent | 13.62%   
 --------|--------
 New Cases Since yesterday | 641 
 New Cases Since 14 days ago | 5935 
