@@ -107,7 +107,13 @@ print(f"New Death since 14 days ago | {new_d_14} ")
 print(f"\n---\n---\n---")
 
 for i in dic, dic_1, dic_14:
-    print(f"# **Covids stats: {src_date}**\n")
+    if i == dic:
+        time_h = src_date
+    elif i == dic_1:
+        time_h = src_date_1
+    elif i == dic_14:
+        time_h = src_date_14
+    print(f"# **Covids stats: {time_h}**\n")
     print(f"**Stat** | **Value** ")
     print(f"-----|------ ")
     for x,y in i.items():

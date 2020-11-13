@@ -31,7 +31,7 @@ Total COVID-19 Tests Performed in Colorado by County>Total Tests Performed | 216
 
 -----------------------------
 
-# **Covids stats: 11/12/2020**
+# **Covids stats: 11/11/2020**
 
 **Stat** | **Value** 
 -----|------ 
@@ -46,7 +46,7 @@ Total COVID-19 Tests Performed in Colorado by County>Total Tests Performed | 211
 
 -----------------------------
 
-# **Covids stats: 11/12/2020**
+# **Covids stats: 10/29/2020**
 
 **Stat** | **Value** 
 -----|------ 
