@@ -70,13 +70,33 @@ for at in data[key]:
         else:
             dicl[full] = valuel
 
-print("day +0")
-print(json.dumps(dic, indent=4, sort_keys=True))
-print("day -1")
-print(json.dumps(dic_1, indent=4, sort_keys=True))
-print("day -14")
-print(json.dumps(dic_14, indent=4, sort_keys=True))
+#print("day +0")
+#print(json.dumps(dic, indent=4, sort_keys=True))
+#print("day -1")
+#print(json.dumps(dic_1, indent=4, sort_keys=True))
+#print("day -14")
+#print(json.dumps(dic_14, indent=4, sort_keys=True))
+
+print(f"\t# Covids stats: {src_date}")
+print(f" Stat | Value")
+print(f" ----|----")
+for x,y in dic.items():
+    print(f" {x} | {y} ")
+print(f"===================================\n")
 
 
+print(f"\t# Covids stats: {src_date_1}")
+print(f" Stat | Value")
+print(f" ----|----")
+for x,y in dic_1.items():
+    print(f" {x} | {y} ")
+print(f"===================================\n")
+
+
+print(f"\t# Covids stats: {src_date_14}")
+print(f" Stat | Value")
+print(f" ----|----")
+for x,y in dic_14.items():
+    print(f" {x} | {y} ")
 #print(dic[ca])
-
+print(f"===================================\n")
