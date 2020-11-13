@@ -70,40 +70,48 @@ for at in data[key]:
         else:
             dicl[full] = valuel
 
-#print("day +0")
 dic = json.dumps(dic, sort_keys=True)
 dic = json.loads(dic)
-#print("day -1")
 dic_1 =json.dumps(dic_1, sort_keys=True)
 dic_1 = json.loads(dic_1)
-#print("day -14")
-dic_14 = json.dumps(dic_14, indent=4, sort_keys=True)
+dic_14 = json.dumps(dic_14, sort_keys=True)
 dic_14 = json.loads(dic_14)
 
+new_c_1 = dic[ca] - dic_1[ca]
+new_c_14 = dic[ca] - dic_14[ca]
+
+new_100_1 = dic[ca_100] - dic_1[ca_100]
+new_100_14 = dic[ca_100] - dic_14[ca_100]
+
+new_d_1 = dic[de] - dic_1[de]
+new_d_14 = dic[de] - dic_14[de]
+ntst = dic[tst] - dic_1[tst]
+ntst_14 = dic[tst] - dic_14[tst]
+pos = (new_c_1 / ntst) * 100
+pos_14 = (new_c_14 / ntst_14) * 100
+
+print(f"Description | Stat ")
+print(f"-----|-----")
+print(f"Today Pos test percent | {round(pos)}%   ")
+print(f"14 day Pos test percent | {round(pos_14)}%   ")
+print(f"--------|--------")
+print(f"New Cases Since yesterday | {new_c_1} ")
+print(f"New Cases Since 14 days ago | {new_c_14} ")
+print(f"--------|--------")
+print(f"Cases per 100k today | {round(dic[ca_100])} ")
+print(f"Diff in cases per 100k since yesterday | {round(new_100_1)} ")
+print(f"Diff since 14 days ago | {round(new_100_14)} ")
+print(f"--------|--------")
+print(f"New Death since yesterday | {new_d_1} ")
+print(f"New Death since 14 days ago | {new_d_14} ")
+print(f"\n---\n---\n---")
+
+for i in dic, dic_1, dic_14:
+    print(f"# **Covids stats: {src_date}**\n")
+    print(f"**Stat** | **Value** ")
+    print(f"-----|------ ")
+    for x,y in i.items():
+        print(f"{x} | {y} ")
+    print(f"\n-----------------------------\n")
 
 
-
-
-print(f"# Covids stats: {src_date}\n")
-print(f"Stat | Value ")
-print(f"-----|------ ")
-for x,y in dic.items():
-    print(f"{x} | {y} ")
-print(f"\n-----------------------------\n")
-
-
-print(f"# Covids stats: {src_date_1}\n")
-print(f"Stat | Value ")
-print(f"-----|------ ")
-for x,y in dic_1.items():
-    print(f"{x} | {y} ")
-print(f"\n-----------------------------\n")
-
-
-print(f"# Covids stats: {src_date_14}\n")
-print(f"Stat | Value ")
-print(f"-----|------ ")
-for x,y in dic_14.items():
-    print(f"{x} | {y} ")
-#print(dic[ca])
-print(f"\n-----------------------------\n")

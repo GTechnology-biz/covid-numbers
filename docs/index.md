@@ -1,6 +1,24 @@
-# Covids stats: 11/12/2020
+Description | Stat 
+-----|-----
+Today Pos test percent | 15%   
+14 day Pos test percent | 14%   
+--------|--------
+New Cases Since yesterday | 641 
+New Cases Since 14 days ago | 5935 
+--------|--------
+Cases per 100k today | 3929 
+Diff in cases per 100k since yesterday | 124 
+Diff since 14 days ago | 1146 
+--------|--------
+New Death since yesterday | 1 
+New Death since 14 days ago | 17 
 
-Stat | Value 
+---
+---
+---
+# **Covids stats: 11/12/2020**
+
+**Stat** | **Value** 
 -----|------ 
 Case Rates Per 100,000 People in Colorado by County>Rate Per 100,000 | 3928.7 
 Cases of COVID-19 in Colorado by County>Cases | 20346 
@@ -13,9 +31,9 @@ Total COVID-19 Tests Performed in Colorado by County>Total Tests Performed | 216
 
 -----------------------------
 
-# Covids stats: 11/11/2020
+# **Covids stats: 11/12/2020**
 
-Stat | Value 
+**Stat** | **Value** 
 -----|------ 
 Case Rates Per 100,000 People in Colorado by County>Rate Per 100,000 | 3804.9 
 Cases of COVID-19 in Colorado by County>Cases | 19705 
@@ -28,9 +46,9 @@ Total COVID-19 Tests Performed in Colorado by County>Total Tests Performed | 211
 
 -----------------------------
 
-# Covids stats: 10/29/2020
+# **Covids stats: 11/12/2020**
 
-Stat | Value 
+**Stat** | **Value** 
 -----|------ 
 Case Rates Per 100,000 People in Colorado by County>Rate Per 100,000 | 2782.7 
 Cases of COVID-19 in Colorado by County>Cases | 14411 
