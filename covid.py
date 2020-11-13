@@ -85,25 +85,25 @@ dic_14 = json.loads(dic_14)
 
 
 print(f"# Covids stats: {src_date}")
-print(f"Stat | Value")
-print(f"----|----")
+print(f"| Stat | Value |")
+print(f"|----|----|")
 for x,y in dic.items():
-    print(f"{x} | {y} ")
+    print(f"|{x} | {y}|")
 print(f"\n===================================\n")
 
 
 print(f"# Covids stats: {src_date_1}")
-print(f"Stat | Value")
-print(f"----|----")
+print(f"|Stat | Value|")
+print(f"|----|----|")
 for x,y in dic_1.items():
-    print(f"{x} | {y} ")
+    print(f"|{x} | {y} |")
 print(f"\n===================================\n")
 
 
 print(f"# Covids stats: {src_date_14}")
-print(f"Stat | Value")
-print(f"----|----")
+print(f"|Stat | Value|")
+print(f"|----|----|")
 for x,y in dic_14.items():
-    print(f"{x} | {y} ")
+    print(f"|{x} | {y}| ")
 #print(dic[ca])
 print(f"\n===================================\n")
