@@ -1,9 +1,9 @@
 import json
-import plotly  as go
-import plotly.express as px
+import plotly.graph_objects as go
 import pandas as pd
 
 
+import plotly
 import requests
 import datetime
 
@@ -22,18 +22,22 @@ for i in url:
     urll = i
     data = requests.get(urll)
     data = data.json()
-    i = data
+    
     for w in data[fet]:
         blah = w[att]
-#        print(json.dumps(blah, indent=2))
+        print(json.dumps(blah, indent=2)
 
 
-#df = px.data()
-#fig = px.treemap(
-#        state_exp_url,
-#        path = [fet, att, 'Label'],
-#        values = 'rate')
+df = pd.read_jon(state_exp_url)
 
-#fig.show()
+fig = go.Figure(data=[go.Table(
+    header=dict(values=list(df.columns),
+                fill_color='paleturquoise',
+                align='left'),
+    cells=dict(values=[df.Rank, df.State, df.Postal, df.Population],
+               fill_color='lavender',
+               align='left'))
+])
 
-print(len(fet), len(att), len())
+fig.show()
+)
