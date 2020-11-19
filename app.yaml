@@ -1,5 +1,15 @@
 runtime: python38
 service: covid-colorado
+env: flex
+entrypoint: gunicorn -b :$PORT main:app
+
+manual_scaling:
+  instances: 1
+resources:
+  cpu: 1
+  memory_gb: 0.5
+  disk_size_gb: 10
+
 handlers:
   # This configures Google App Engine to serve the files in the app's static
   # directory.
@@ -11,3 +21,6 @@ handlers:
   # the entire handlers section) when there are no static files defined.
 - url: /.*
   script: auto
+
+
+

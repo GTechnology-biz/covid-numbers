@@ -1,4 +1,4 @@
-from app import app
+from covid-numbers import app
 
 
 if __name__ == '__main__':
