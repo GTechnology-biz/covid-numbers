@@ -43,6 +43,9 @@ def tbl_2 (data):
 
 def tbl_3 (data):
     #data = data.set_index('OBJECTID').transpose().reset_index()
+    print(data)
+    pos = data.iat[80,5]
+    print(pos)
     return(data)
 
 
