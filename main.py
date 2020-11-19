@@ -1,5 +1,3 @@
-from covid-numbers import app
-
-
+from covidnumbers.app import server as application
 if __name__ == '__main__':
-    app.run
+    server.run_server
